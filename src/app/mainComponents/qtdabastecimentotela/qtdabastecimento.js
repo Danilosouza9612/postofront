@@ -3,36 +3,31 @@ import React from "react";
 class QtdAbastecimento extends React.Component{
     constructor(props){
         super(props);
-        this.combustiveis = [
-            {
-                combustivel : {
-                    nome : "Gasolina",
-                },
-                quantidade : 100
-            },
-            {
-                combustivel : {
-                    nome : "Diesel",
-                },
-                quantidade : 50
-            },
-            {
-                combustivel : {
-                    nome : "Etanol",
-                },
-                quantidade : 20
-            }
-        ]
+        this.state = {
+            combustiveis : []
+        }
     }
-    getCombustiveis(){
-        return this.combustiveis.map( (item) =>
+    getCombustivelItem(combustiveis){
+        const items = combustiveis.map( (item) =>
             <tr>
-                <td>{item.combustivel.nome}</td>
+                <td>{item.nome}</td>
                 <td>{item.quantidade}</td>
             </tr>
         );
+
+        this.setState({
+            combustiveis : items
+        })
     }
-    
+    getCombustiveis(){
+        fetch("http://localhost:8080/combustivel/query10?id=1", {method : "GET"})
+            .then((response)=>response.json())
+            .then((data)=>{this.getCombustivelItem(data)})
+            .catch(()=>{window.alert("Fetch Error")});  
+    }
+    componentDidMount(){
+        this.getCombustiveis();
+    }
     render(){
         return(
             <div className="tableContainer">
@@ -48,7 +43,7 @@ class QtdAbastecimento extends React.Component{
                             </tr>
                         </thead>
                         <tbody>
-                            {this.getCombustiveis()}
+                            {this.state.combustiveis}
                         </tbody>
                     </table>
                 </div>

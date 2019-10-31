@@ -4,35 +4,32 @@ class BombasTabela extends React.Component{
     
     constructor(props){
         super(props);
-        this.bombas = [
-            {
-                id : 0,
-                combustivel : {
-                    nome : "Gasolina Comum"
-                },
-                quantidade : 950
-            },
-            {
-                id : 1,
-                combustivel : {
-                    nome : "Diesel"
-                },
-                quantidade : 800
-            }
-        ]
+        this.state = {
+            bombas : []
+        }
     }
-    renderItemTabela(){
-        const items = this.bombas.map((op)=> 
+    getBombasItem(bombas){
+        const items = bombas.map((op)=> 
                 <tr>
-                    <td>{op.id}</td>
-                    <td>{op.combustivel.nome}</td>
-                    <td>{op.quantidade}</td>
+                    <td>{op.nome}</td>
+                    <td>{op.preco}</td>
+                    <td>{op.qtdRestante} litros</td>
                 </tr>
         );
 
-        return items;
+        this.setState({
+            bombas : items
+        });
     }
-    
+    getBombas(){
+        fetch("http://localhost:8080/bomba/query08", {method : "GET"})
+        .then((response)=>response.json())
+        .then((data)=>{this.getBombasItem(data)})
+        .catch(()=>{window.alert("Fetch Error")});  
+    }
+    componentDidMount(){
+        this.getBombas();
+    }
     render(){
         return (
             <div id="bombaTabelaContainer">
@@ -43,13 +40,13 @@ class BombasTabela extends React.Component{
                     <table>
                         <thead>
                             <tr>
-                                <td>Identificador</td>
-                                <td>Combustível</td>
-                                <td>Quantidade</td>
+                                <td>Nome</td>
+                                <td>Preço</td>
+                                <td>Quantidade Restante</td>
                             </tr>
                         </thead>
                         <tbody>
-                            {this.renderItemTabela()}
+                            {this.state.bombas}
                         </tbody>
                     </table>
                 </div>
