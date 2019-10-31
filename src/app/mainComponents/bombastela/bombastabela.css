@@ -1,0 +1,17 @@
+.tableContainer{
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+.tableContainer table{
+    width: 100%;
+}
+.tableContainer thead{
+    font-weight: bold;
+}
+.tableContainer table tr td:last-child{
+    width: 60px;
+}
+.tableContainer table tr td:first-child{
+    width: 30px;
+}

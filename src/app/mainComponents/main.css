@@ -1,0 +1,38 @@
+
+form{
+    display: flex;
+    flex-direction: column;
+  }
+  form div{
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 5px 0px 5px 0px;
+  }
+  form div input, form div select{
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px #CCCCCC solid;
+    color: #222222;
+    transition: 0.2s;
+  }
+  form div input:focus, form div select:focus{
+    border-color: #444444;
+  }
+  button, input[type=button]{
+    line-height: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+.tableContainer{
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+.tableContainer table{
+    width: 100%;
+    background-color: white;
+}
+.tableContainer thead{
+    font-weight: bold;
+}

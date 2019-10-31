@@ -1,0 +1,52 @@
+html, body, #root{
+  width: 100%;
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+}
+body{
+  color: #eeeeee;
+  height: 100%;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.container{
+  height: 100%;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  grid-template-rows: auto 1fr;
+  background-color: #111111;
+}
+header{
+  grid-column: 1 / span 2;
+}
+aside{
+  background-color: #222222;
+}
+
+main{
+  background-color: #DDDDDD;
+  overflow: auto;
+  color: #222222;
+}
+aside{
+  display: flex;
+  flex-direction: column;
+}
+.asideBtn{
+  line-height: 30px;
+  font-size: 12px;
+  cursor: pointer;
+  box-sizing: border-box;
+  padding:0px 10px 0px 10px;
+}
+.asideBtn:hover{
+  background-color: #DD3333;
+  columns: #dddddd;
+}
+.asideBtn:active{
+  background-color: #FF3333;
+  columns: #dddddd;
+}
+header h1{
+  padding-left: 10px;
+}
