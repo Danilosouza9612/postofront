@@ -26,14 +26,25 @@ class AbastecerBomba extends React.Component{
         }
     }
     enviarDados(){
-        let abastecimentoBomba = new AbastecimentoBomba(this.state.formData);
-        let json = JSON.stringify(abastecimentoBomba);
-        console.log(json);
-        fetch("http://localhost:8080/abastecimento_bomba/query03", 
-        {
-            method : "POST", 
-            body : json 
-        }).catch(()=>{window.alert("Fetch Error")});
+        try{
+            let abastecimentoBomba = new AbastecimentoBomba(this.state.formData);
+            let json = JSON.stringify(abastecimentoBomba);
+            console.log(json);
+            fetch("http://localhost:8080/abastecimento_bomba/query03", 
+            {
+                method : "POST", 
+                body : json 
+            })
+            .then((response)=>{
+                if(response.status===200){
+                    response.text().then((data)=>{window.alert(data)})
+                }else{
+                    window.alert("Erro "+response.status);
+                }
+            }).catch(()=>{window.alert("Fetch Error")});
+        }catch(e){
+            window.alert(e);
+        }
     }
     setFormValue(key, value){
         let form = this.state.formData;

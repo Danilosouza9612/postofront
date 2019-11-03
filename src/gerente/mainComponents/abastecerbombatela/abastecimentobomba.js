@@ -33,19 +33,39 @@ class AbastecimentoBomba{
         return this.preco;
     }
     set BandeiraId(bandeiraId){
-        this.bandeiraId = bandeiraId;
+        if(bandeiraId!==undefined){
+            this.bandeiraId = bandeiraId;
+        }else{
+            throw new Error("Informe o Fornecedor de combustível");
+        }
     }
     set BombaId(bombaId){
-        this.bombaId = bombaId;
+        if(bombaId!==undefined){
+            this.bombaId = bombaId;
+        }else{
+            throw new Error("Informe a bomba de combustível");
+        }
     }
     set Data(data){
-        this.data = data;
+        if(data!==undefined){
+            this.data = data;
+        }else{
+            throw new Error("Informe a data");
+        }
     }
     set QtdLitros(qtdLitros){
-        this.qtdLitros = qtdLitros;
+        if(qtdLitros!==undefined && qtdLitros!==""){
+            this.qtdLitros = qtdLitros;
+        }else{
+            throw new Error("Informe a quantidade de litros");
+        }
     }
     set Preco(preco){
-        this.preco = preco;
+        if(preco!==undefined && preco!==""){
+            this.preco = preco;
+        }else{
+            throw new Error("Informe o preço");
+        }
     }
 }
 
