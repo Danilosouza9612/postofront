@@ -9,7 +9,9 @@ export const InputComponent = function(props){
     );
 }
 export const OptionComponent = function(props){
-    const opcoes = props.options.map((op) => {
+    const items = props.options;
+    const opcoes = items.map((op) => 
+    {
         return <option value={op.id}>{op.nome}</option>
     });
 
@@ -17,6 +19,7 @@ export const OptionComponent = function(props){
         <div>
             <label for={props.name}>{props.text}</label>
             <select name={props.name} id={props.name} onChange={props.onChange}>
+                <option value="undefined">Selecione um Valor</option>
                 {opcoes}
             </select>
         </div>

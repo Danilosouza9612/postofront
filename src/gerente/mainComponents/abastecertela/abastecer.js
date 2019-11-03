@@ -3,26 +3,6 @@ import InputComponent from '../component.js';
 import BombaOptions from '../misc';
 
 class NovoAbastecimento extends React.Component{
-    
-    getPostoOptions(){
-        this.options = [
-            {
-                id : 0,
-                nome : "Bomba 1"
-            },
-            {
-                id : 1,
-                nome : "Bomba 2"
-            },
-            {
-                id : 2,
-                nome : "Bomba 3"
-            }
-        ];
-    }
-    componentWillMount(){
-        this.getPostoOptions();
-    }
     render(){
         return (
             <div>
@@ -36,6 +16,9 @@ class NovoAbastecimento extends React.Component{
                     <InputComponent type="text" text="CPF do Cliente" name="cpf"/>
                     <InputComponent type="text" text="Nome do Cliente" name="nome"/>
                     <BombaOptions/>
+                    <div>
+                        <input type="submit" value="Inserir"></input>
+                    </div>
                 </form>
             </div>
         );

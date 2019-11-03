@@ -1,29 +1,37 @@
-
-form{
+main{
+  padding: 10px 10px 0px 10px;
+}
+.mainContainer{
     display: flex;
     flex-direction: column;
   }
-  form div{
+div{
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
     padding: 5px 0px 5px 0px;
-  }
-  form div input, form div select{
+}
+div input, div select{
     padding: 10px;
     box-sizing: border-box;
     border: 1px #CCCCCC solid;
     color: #222222;
     transition: 0.2s;
-  }
-  form div input:focus, form div select:focus{
-    border-color: #444444;
-  }
-  button, input[type=button]{
+}
+div input:focus, div select:focus{
+     border-color: #444444;
+}
+button, input[type=submit]{
     line-height: 30px;
-    padding-left: 10px;
-    padding-right: 10px;
-  }
+    background-color: #444444;
+    color: #CCCCCC;
+}
+button:hover, input[type=submit]:hover{
+    background-color: #222222;
+}
+button:hover, input[type=submit]:active{
+    background-color: #111111;
+}
 .tableContainer{
     display: flex;
     flex-direction: column;

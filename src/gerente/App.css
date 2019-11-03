@@ -47,6 +47,6 @@ aside{
   background-color: #FF3333;
   columns: #dddddd;
 }
-header h1{
+header h1, header p{
   padding-left: 10px;
 }
