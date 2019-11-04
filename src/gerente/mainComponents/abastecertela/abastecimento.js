@@ -1,0 +1,63 @@
+class Abastecimento{
+    
+    constructor(form){
+        this.Cpf = form.cpf;
+        this.BombaId = form.bombaId;
+        this.Data = form.data;
+        this.QtdLitros = form.qtdLitros;
+        this.Nome = form.nome;
+    }
+
+    get Cpf(){
+        return this.cpf;
+    }
+    get BombaId(){
+        return this.bombaId;
+    }
+    get Data(){
+        return this.data;
+    }
+    get QtdLitros(){
+        return this.qtdLitros;
+    }
+    get NomeCliente(){
+        return this.nome;
+    }
+    set Cpf(cpf){
+        if(cpf!==undefined){
+            this.cpf = cpf;
+        }else{
+            throw new Error("Informe o cpf do cliente");
+        }
+    }
+    set BombaId(bombaId){
+        if(bombaId!==undefined){
+            this.bombaId = bombaId;
+        }else{
+            throw new Error("Informe a bomba de combustível");
+        }
+    }
+    set Data(data){
+        if(data!==undefined){
+            this.data = data;
+        }else{
+            throw new Error("Informe a data");
+        }
+    }
+    set QtdLitros(qtdLitros){
+        if(qtdLitros!==undefined && qtdLitros!==""){
+            this.qtdLitros = qtdLitros;
+        }else{
+            throw new Error("Informe a quantidade de litros");
+        }
+    }
+    set NomeCliente(nome){
+        if(nome!==undefined && nome!==""){
+            this.nome = nome;
+        }else{
+            throw new Error("Informe o nome do cliente");
+        }
+    }
+}
+
+export default Abastecimento;
