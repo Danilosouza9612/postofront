@@ -1,5 +1,3 @@
-import NovoPosto from "./novoposto";
-
 class Posto{
 
     constructor(form){
@@ -7,7 +5,7 @@ class Posto{
         this.RazaoSocial = form.razao_social;
         this.NomeFantasia = form.nome_fantasia;
         this.Telefone = form.telefone;
-        this.GerenteId = form.GERENTE_id;
+        this.GerenteCpf = form.GERENTE_id;
         this.BandeiraId = form.BANDEIRA_id;
         this.Cep = form.cep;
         this.Numero = form.numero;
@@ -18,19 +16,19 @@ class Posto{
         return this.cnpj;
     }
     get RazaoSocial(){
-        return this.razao_social;
+        return this.razaoSocial;
     }
     get NomeFantasia(){
-        return this.nome_fantasia;
+        return this.nomeFantasia;
     }
     get Telefone(){
         return this.telefone;
     }
-    get GerenteId(){
-        return this.GERENTE_id;
+    get GerenteCpf(){
+        return this.gerenteCpf;
     }
     get BandeiraId(){
-        return this.BANDEIRA_id;
+        return this.bandeiraId;
     }
     get Cep(){
         return this.cep;
@@ -50,15 +48,15 @@ class Posto{
         }
     }
     set RazaoSocial(razao_social){
-        if(razao_social!==undefined){
-            this.razao_social = razao_social;
+        if(razao_social!==undefined && razao_social!==""){
+            this.razaoSocial = razao_social;
         }else{
             throw new Error("Informe a razão social do posto");
         }
     }
     set NomeFantasia(nome_fantasia){
         if(nome_fantasia!==undefined && nome_fantasia!==""){
-            this.nome_fantasia = nome_fantasia;
+            this.nomeFantasia = nome_fantasia;
         }else{
             throw new Error("Informe o nome fantasia do posto");
         }
@@ -70,18 +68,18 @@ class Posto{
             throw new Error("Informe o telefone do posto");
         }
     }
-    set GerenteId(GERENTE_id){
-        if(GERENTE_id!==undefined){
-            this.GERENTE_id = GERENTE_id;
+    set GerenteCpf(gerenteCpf){
+        if(gerenteCpf!==undefined){
+            this.gerenteCpf = gerenteCpf;
         }else{
             throw new Error("Informe o código do gerente do posto");
         }
     }
-    set BandeiraId(BANDEIRA_id){
-        if(BANDEIRA_id!==undefined){
-            this.BANDEIRA_id = BANDEIRA_id;
+    set BandeiraId(bandeiraId){
+        if(bandeiraId!==undefined && bandeiraId!=="undefined"){
+            this.bandeiraId = bandeiraId;
         }else{
-            throw new Error("Informe o código da Bandeira/Fornecedor do posto");
+            this.bandeiraId = null;
         }
     }
     set Cep(cep){

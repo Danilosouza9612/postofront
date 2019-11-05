@@ -4,6 +4,7 @@ import NovoAbastecimento from './mainComponents/abastecertela/abastecer';
 import Inicio from './mainComponents/iniciotela/inicio';
 import AbastecerBomba from "./mainComponents/abastecerbombatela/abastecerbomba";
 import BombasTabela from "./mainComponents/bombastela/bombastabela";
+import FaturamentoTela from "./mainComponents/faturamentotela/faturamento";
 import QtdAbastecimento from "./mainComponents/qtdabastecimentotela/qtdabastecimento";
 import AbastecimentoDia from "./mainComponents/abastecimentosdia/abastecimentosdiatela";
 import ClienteAssiduo from "./mainComponents/clienteassiduotela/clienteassiduo";
@@ -36,7 +37,7 @@ class App extends React.Component {
             <AsideBtn text="Bombas de combustível" onClick={()=>this.setState({mainState : <BombasTabela/>})}/>
             <AsideBtn text="Abastecimentos" onClick={()=>this.setState({mainState: <QtdAbastecimento/>})}/>
             <AsideBtn text="Clientes mais assíduos" onClick={()=>this.setState({mainState : <ClienteAssiduo/>})}/>
-            <AsideBtn text="Faturamento"/>
+            <AsideBtn text="Faturamento" onClick={()=>this.setState({mainState : <FaturamentoTela/>})}/>
             <AsideBtn text="Cadastrar Posto" onClick={()=>this.setState({mainState : <NovoPosto/>})}/>
           </div>
         </aside>

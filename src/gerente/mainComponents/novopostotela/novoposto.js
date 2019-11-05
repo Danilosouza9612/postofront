@@ -1,6 +1,7 @@
 import React from "react";
 import InputComponent from '../component.js';
 import Posto from './posto';
+import {FornecedorOptions} from '../misc';
 
 class NovoPosto extends React.Component{
     constructor(props){
@@ -53,23 +54,21 @@ class NovoPosto extends React.Component{
     render(){
         return (
             <div>
-                <form> 
                     <div> 
                         <h2>Cadastrar Novo Posto</h2>
                     </div>
-                    <InputComponent type="text" text="Informe o Cnpj" name="cnpj" onChange={(e)=>("cnpj", e.target.value)}/>
-                    <InputComponent type="text" text="Razão Social" name="razao_social" onChange={(e)=>("razao_social", e.target.value)}/>
-                    <InputComponent type="text" text="Nome Fantasia" name="nome_fantasia" onChange={(e)=>("nome_fantasia", e.target.value)}/>
-                    <InputComponent type="text" text="Telefone" name="telefone" onChange={(e)=>("telefone", e.target.value)}/>
-                    <InputComponent type="text" text="Informe o código do Gerente" name="GERENTE_id" onChange={(e)=>("GERENTE_id", e.target.value)}/>
-                    <InputComponent type="text" text="Informe o código da Bandeira(Fornecedor)" name="BANDEIRA_id" onChange={(e)=>("BANDEIRA_id", e.target.value)}/>
-                    <InputComponent type="text" text="CEP" name="cep" onChange={(e)=>("cep", e.target.value)}/>
-                    <InputComponent type="text" text="Número" name="numero" onChange={(e)=>("numero", e.target.value)}/>
-                    <InputComponent type="text" text="Complemento" name="complemento" onChange={(e)=>("complemento", e.target.value)}/>
+                    <InputComponent type="text" text="Informe o Cnpj" name="cnpj" onChange={(e)=>this.setFormValue("cnpj", e.target.value)}/>
+                    <InputComponent type="text" text="Razão Social" name="razao_social" onChange={(e)=>this.setFormValue("razao_social", e.target.value)}/>
+                    <InputComponent type="text" text="Nome Fantasia" name="nome_fantasia" onChange={(e)=>this.setFormValue("nome_fantasia", e.target.value)}/>
+                    <InputComponent type="text" text="Telefone" name="telefone" onChange={(e)=>this.setFormValue("telefone", e.target.value)}/>
+                    <InputComponent type="text" text="Informe o CPF do Gerente" name="GERENTE_id" onChange={(e)=>this.setFormValue("GERENTE_id", e.target.value)}/>
+                    <FornecedorOptions type="text" text="Bandeira(Fornecedor)" name="BANDEIRA_id" onChange={(e)=>this.setFormValue("BANDEIRA_id", e.target.value)}/>
+                    <InputComponent type="text" text="CEP" name="cep" onChange={(e)=>this.setFormValue("cep", e.target.value)}/>
+                    <InputComponent type="text" text="Número" name="numero" onChange={(e)=>this.setFormValue("numero", e.target.value)}/>
+                    <InputComponent type="text" text="Complemento" name="complemento" onChange={(e)=>this.setFormValue("complemento", e.target.value)}/>
                     <div>
-                        <input type="submit" value="Cadastrar" onClick={(e)=> this.enviarDados}></input>
+                        <input type="submit" value="Cadastrar" onClick={(e)=> this.enviarDados()}></input>
                     </div>
-                </form>
             </div>
 
 

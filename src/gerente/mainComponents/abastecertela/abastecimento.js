@@ -6,6 +6,7 @@ class Abastecimento{
         this.Data = form.data;
         this.QtdLitros = form.qtdLitros;
         this.Nome = form.nome;
+        this.Hora = form.hora;
     }
 
     get Cpf(){
@@ -44,6 +45,16 @@ class Abastecimento{
             throw new Error("Informe a data");
         }
     }
+    set Hora(hora){
+        if(hora!==undefined){
+            this.hora = hora;
+        }else{
+            throw new Error("Informe a hora");
+        }
+    }
+    get Hora(){
+        return this.hora;
+    }
     set QtdLitros(qtdLitros){
         if(qtdLitros!==undefined && qtdLitros!==""){
             this.qtdLitros = qtdLitros;
@@ -51,7 +62,7 @@ class Abastecimento{
             throw new Error("Informe a quantidade de litros");
         }
     }
-    set NomeCliente(nome){
+    set Nome(nome){
         if(nome!==undefined && nome!==""){
             this.nome = nome;
         }else{

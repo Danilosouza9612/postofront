@@ -13,7 +13,8 @@ class NovoAbastecimento extends React.Component{
                 nome: undefined,
                 qtdLitros: undefined,
                 cpf: undefined,
-                data: undefined
+                data: undefined,
+                hora : undefined,
             }
         }
     }
@@ -47,24 +48,21 @@ class NovoAbastecimento extends React.Component{
         this.setState(form);
         console.log(this.state.formData);
     }
-
     render(){
         return (
             <div>
-                <form>
-                    <div>
-                        <h2>Novo Abastecimento</h2>
-                    </div>
-                    <InputComponent type="date" text="Data" name="data" onChange={(e)=>("data", e.target.value)}/>
-                    <InputComponent type="time" text="Hora" name="hora"/>
-                    <InputComponent type="text" text="Quantidade de Litros" name="litros" onChange={(e)=>("qtdLitros", e.target.value)}/>
-                    <InputComponent type="text" text="CPF do Cliente" name="cpf" onChange={(e)=>("cpf", e.target.value)}/>
-                    <InputComponent type="text" text="Nome do Cliente" name="nome" onChange={(e)=>("nome", e.target.value)}/>
-                    <BombaOptions onChange={(e)=>(this.setFormValue("bombaId", e.target.value))}/>
-                    <div>
-                        <input type="submit" value="Inserir" onClick={(e)=> this.enviarDados}></input>
-                    </div>
-                </form>
+                <div>
+                    <h2>Novo Abastecimento</h2>
+                </div>
+                <InputComponent type="date" text="Data" name="data" onChange={(e)=>this.setFormValue("data", e.target.value)}/>
+                <InputComponent type="time" text="Hora" name="hora" onChange={(e)=>this.setFormValue("hora", e.target.value)}/>
+                <InputComponent type="text" text="Quantidade de Litros" name="litros" onChange={(e)=>this.setFormValue("qtdLitros", e.target.value)}/>
+                <InputComponent type="text" text="CPF do Cliente" name="cpf" onChange={(e)=>this.setFormValue("cpf", e.target.value)}/>
+                <InputComponent type="text" text="Nome do Cliente" name="nome" onChange={(e)=>this.setFormValue("nome", e.target.value)}/>
+                <BombaOptions onChange={(e)=>(this.setFormValue("bombaId", e.target.value))}/>
+                <div>
+                    <input type="submit" value="Inserir" onClick={(e)=> this.enviarDados()}></input>
+                </div>
             </div>
         );
     }
