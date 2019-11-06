@@ -22,7 +22,7 @@ class BombasTabela extends React.Component{
         });
     }
     getBombas(){
-        fetch("http://localhost:8080/bomba/query08", {method : "GET"})
+        fetch("http://localhost:8080/bomba/query08?id=1", {method : "GET"})
         .then((response)=>response.json())
         .then((data)=>{this.getBombasItem(data)})
         .catch(()=>{window.alert("Fetch Error")});  

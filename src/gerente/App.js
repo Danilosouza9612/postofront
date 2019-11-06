@@ -9,12 +9,12 @@ import QtdAbastecimento from "./mainComponents/qtdabastecimentotela/qtdabastecim
 import AbastecimentoDia from "./mainComponents/abastecimentosdia/abastecimentosdiatela";
 import ClienteAssiduo from "./mainComponents/clienteassiduotela/clienteassiduo";
 import NovoPosto from './mainComponents/novopostotela/novoposto';
+import AlertaPostosQtdInferior from "../appComponents/components";
 import './App.css';
 import './mainComponents/main.css';
 
 
 class App extends React.Component {
-
   constructor(props){
     super(props)
     this.state = {
@@ -28,6 +28,9 @@ class App extends React.Component {
           <h1>MeuPosto</h1>
           <p>Gerente</p>
         </header>
+        <div className="alert">
+          <AlertaPostosQtdInferior/>
+        </div>
         <aside>
           <div>
             <AsideBtn text="Início" onClick={()=>this.setState({mainState : <Inicio/>})}/>
