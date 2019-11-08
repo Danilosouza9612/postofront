@@ -20,6 +20,7 @@ class App extends React.Component {
     this.state = {
       mainState : <Inicio/>
     }
+    this.alertBombas = React.createRef();
   }
   render(){
     return (
@@ -29,13 +30,13 @@ class App extends React.Component {
           <p>Gerente</p>
         </header>
         <div className="alert">
-          <AlertaPostosQtdInferior/>
+          <AlertaPostosQtdInferior ref={this.alertBombas}/>
         </div>
         <aside>
           <div>
             <AsideBtn text="Início" onClick={()=>this.setState({mainState : <Inicio/>})}/>
-            <AsideBtn text="Abastecer" onClick={()=>this.setState({mainState : <NovoAbastecimento/>})}/>
-            <AsideBtn text="Abastecer Bomba" onClick={()=>this.setState({mainState : <AbastecerBomba/>})} />
+            <AsideBtn text="Abastecer" onClick={()=>this.setState({mainState : <NovoAbastecimento onAbastecimento={()=>{this.alertBombas.current.clearBombasInterval()}}/>})}/>
+            <AsideBtn text="Abastecer Bomba" onClick={()=>this.setState({mainState : <AbastecerBomba onInsertAbastecimentoBomba={()=>{this.alertBombas.current.clearBombasInterval()}}/>})} />
             <AsideBtn text="Abastecimentos do Dia" onClick={()=>this.setState({mainState : <AbastecimentoDia/>})}/>
             <AsideBtn text="Bombas de combustível" onClick={()=>this.setState({mainState : <BombasTabela/>})}/>
             <AsideBtn text="Abastecimentos" onClick={()=>this.setState({mainState: <QtdAbastecimento/>})}/>

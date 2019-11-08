@@ -32,6 +32,7 @@ class NovoAbastecimento extends React.Component{
             })
             .then((response)=>{
                 if(response.status===200){
+                    this.props.onAbastecimento();
                     response.text().then((data)=>{window.alert(data)})
                 }else{
                     window.alert("Erro " + response.status);

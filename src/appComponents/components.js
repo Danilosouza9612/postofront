@@ -6,28 +6,22 @@ export class AlertaPostosQtdInferior extends React.Component{
         super(props);
         this.state = {
             bombasQtdInferior : true,
-            qtdInferior : 0,
             visibleContainer : null
         }
     }
     bombaQtdInferiorContainer = function(data){
+        let st = this.state;
         if(data==0){
-            this.setState(
-                {
-                    bombasQtdInferior : false,
-                    visibleContainer : null
-                }
-            );
+            st.bombasQtdInferior = false;
+            st.qtdInferior = data;
+            st.visibleContainer = null;
         }else{
-            console.log(data);
-            this.setState(
-                {
-                    bombasQtdInferior : true,
-                    qtdInferior : data,
-                    visibleContainer : this.renderContainer()
-                }
-            );
+            st.bombasQtdInferior = true;
+            st.qtdInferior = data;
+            st.visibleContainer = this.renderContainer();
         }
+
+        this.setState(st);
     }
     verificarBombas = function(){
         fetch("http://localhost:8080/bomba/query06?id=1", {method : "GET"})
@@ -35,11 +29,22 @@ export class AlertaPostosQtdInferior extends React.Component{
         .then((num)=>{this.bombaQtdInferiorContainer(num)})
         .catch((e)=>{window.alert(e)});
     }   
-    componentDidMount(){
+    componentWillMount(){
+        this.verificarBombasInterval();
+    }
+    verificarBombasInterval(){
+        let st = this.state;
         this.verificarBombas();
-        setInterval(()=>{
+        st.qtdInterval = setInterval(()=>{
             this.verificarBombas()
         }, 5000);
+        this.setState(st);
+    }
+    clearBombasInterval(){
+        let st = this.state;
+        clearInterval(st.qtdInterval);
+        this.setState(st);
+        this.verificarBombasInterval();
     }
     renderContainer(){
         return(

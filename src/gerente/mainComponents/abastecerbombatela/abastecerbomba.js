@@ -37,6 +37,7 @@ class AbastecerBomba extends React.Component{
             })
             .then((response)=>{
                 if(response.status===200){
+                    this.props.onInsertAbastecimentoBomba();
                     response.text().then((data)=>{window.alert(data)})
                 }else{
                     window.alert("Erro "+response.status);
@@ -52,7 +53,6 @@ class AbastecerBomba extends React.Component{
         this.setState(form);
         console.log(this.state.formData);
     }
-
     render(){
         return (
             <div className="mainContainer">
