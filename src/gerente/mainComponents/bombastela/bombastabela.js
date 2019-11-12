@@ -11,6 +11,7 @@ class BombasTabela extends React.Component{
     getBombasItem(bombas){
         const items = bombas.map((op)=> 
                 <tr>
+                    <td>{op.id}</td>
                     <td>{op.nome}</td>
                     <td>{op.preco}</td>
                     <td>{op.qtdRestante} litros</td>
@@ -40,6 +41,7 @@ class BombasTabela extends React.Component{
                     <table>
                         <thead>
                             <tr>
+                                <td>Identificador</td>
                                 <td>Nome</td>
                                 <td>Preço</td>
                                 <td>Quantidade Restante</td>

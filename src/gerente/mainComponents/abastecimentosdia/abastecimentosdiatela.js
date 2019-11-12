@@ -12,9 +12,11 @@ class AbastecimentoDia extends React.Component{
         const items = data.map((item)=>{
             return (
                 <tr>
+                    <td>{item.hora}</td>
+                    <td>{item.nomeCliente}</td>
+                    <td>{item.cpf}</td>
                     <td>{item.preco}</td>
                     <td>{item.qtdLitros}</td>
-                    <td>{item.cpf}</td>
                     <td>{item.nome}</td>
                 </tr>
             );
@@ -29,7 +31,7 @@ class AbastecimentoDia extends React.Component{
     }
     dateRequest(dataSelec){
         let params = {
-            data : dataSelec,
+            data : dataSelec,   
             id : 1
         };
         let queryString = new URLSearchParams();
@@ -55,9 +57,11 @@ class AbastecimentoDia extends React.Component{
                     <table>
                         <thead>
                             <tr>
+                                <td>Hora</td>
+                                <td>Nome</td>
+                                <td>CPF</td>
                                 <td>Preço</td>
                                 <td>Litros</td>
-                                <td>CPF</td>
                                 <td>Combustível</td>
                             </tr>
                         </thead>

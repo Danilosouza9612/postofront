@@ -22,6 +22,7 @@ class Faturamento extends React.Component{
         <tr>
             <td>{item.nomeFantasia}</td>
             <td>{item.faturamento}</td>
+            <td>{item.telefone}</td>
         </tr>));
         this.setState({faturamentos : items})
     }
@@ -51,6 +52,7 @@ class Faturamento extends React.Component{
                             <tr>
                                 <td>Posto</td>
                                 <td>Faturamento</td>
+                                <td>Telefone</td>
                             </tr>
                         </thead>
                         <tbody>
