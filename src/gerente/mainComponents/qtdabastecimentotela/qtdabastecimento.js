@@ -1,33 +1,38 @@
 import React from "react";
 import {InputComponent} from "../component";
-import Chart from '../Chart';
-
+import { Bar } from "react-chartjs-2";
 
 class QtdAbastecimento extends React.Component{
     constructor(props){
         super(props);
         this.state = {
             combustiveis : [],
-            mes : undefined,
-            ano : undefined,
-            chartData:{}
+            mes : 11,
+            ano : 2019,
+            chartData:{},
+            chartOptions : {
+                maintainAspectRatio: false ,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true,
+                            min: 0,
+                        }
+                      }]
+                   }
+            }
         }
-    }
-
-    
-    componentWillMount(){
-        this.getCombustiveis();
     }
 
     getChartData(items){
         this.setState({
             chartData: {
                
-                    labels: [items.map((item)=>item.nome)],
+                    labels: items.map(item=>item.nome),
                     datasets: [
                         {
                             label: 'Combustivel',
-                            data: items.map((item)=>item.quantidade),
+                            data: items.map(item=>item.quantidade),
                             backgroundColor: [
                                 'rgba(255, 99, 132, 0.6)',
                                 'rgba(54, 162, 235, 0.6)',
@@ -38,11 +43,14 @@ class QtdAbastecimento extends React.Component{
                     ]
                 }
             })
+            console.log("Entrou");
         }
         
-    
+    componentDidMount(){
+    }
 
     getCombustivelItem(combustiveis){
+        this.getChartData(combustiveis);
         const items = combustiveis.map( (item) =>
             <tr>
                 <td>{item.nome}</td>
@@ -53,9 +61,7 @@ class QtdAbastecimento extends React.Component{
     
         this.setState({
             combustiveis : items
-        })
-        this.getChartData(combustiveis);
-        
+        })        
     }
     getCombustiveis(){
         let requestParams = new URLSearchParams();
@@ -100,7 +106,13 @@ class QtdAbastecimento extends React.Component{
                         </tbody>
                     </table>
                 </div>
-                <Chart  chartData={this.state.chartData} legendPosition="bottom"/>
+                <div className="chart">
+                    <Bar
+                        data={this.state.chartData}
+                        height="500px"
+                        options={this.state.chartOptions}
+                    />   
+                </div>         
             </div>
             
         );

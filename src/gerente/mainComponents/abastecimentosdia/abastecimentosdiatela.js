@@ -12,7 +12,7 @@ class AbastecimentoDia extends React.Component{
         const items = data.map((item)=>{
             return (
                 <tr>
-                    <td>{item.hora}</td>
+                    <td>{item.data}</td>
                     <td>{item.nomeCliente}</td>
                     <td>{item.cpf}</td>
                     <td>{item.preco}</td>
@@ -38,13 +38,13 @@ class AbastecimentoDia extends React.Component{
         for(let key in params){
             queryString.append(key, params[key]);
         }
-        fetch("http://localhost:8080/posto/query07?"+queryString.toString(), {method : "GET"})
+        fetch("http://localhost:8080/abastecimento/query07?"+queryString.toString(), {method : "GET"})
         .then((response)=>response.json())
         .then((data)=>{this.getAbastecimentoItem(data)});
     }
     render(){
         return (
-            <div id="bombaTabelaContainer">
+            <div id="bombaTabelaContainer"> 
                 <div>
                     <h2>Abastecimentos do dia</h2>
                 </div>
