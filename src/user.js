@@ -14,7 +14,7 @@ class User extends React.Component{
             <div id="selectUser">
                 <div id="selectContainer">
                     <div>
-                        <h1>meuPosto</h1>
+                        <h1>Meu Posto</h1>
                     </div>
                     <div>
                         <div className="btn" onClick={()=>{this.setState({main : <App dono={true}/>})}}>Sou Dono</div>

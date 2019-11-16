@@ -1,5 +1,7 @@
 import React from "react";
 import {InputComponent} from "../component";
+import Chart from '../Chart';
+
 
 class QtdAbastecimento extends React.Component{
     constructor(props){
@@ -7,9 +9,39 @@ class QtdAbastecimento extends React.Component{
         this.state = {
             combustiveis : [],
             mes : undefined,
-            ano : undefined
+            ano : undefined,
+            chartData:{}
         }
     }
+
+    
+    componentWillMount(){
+        this.getCombustiveis();
+    }
+
+    getChartData(items){
+        this.setState({
+            chartData: {
+               
+                    labels: [items.map((item)=>item.nome)],
+                    datasets: [
+                        {
+                            label: 'Combustivel',
+                            data: items.map((item)=>item.quantidade),
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.6)',
+                                'rgba(54, 162, 235, 0.6)',
+                                'rgba(255, 206, 86, 0.6)'
+    
+                            ]
+                        }
+                    ]
+                }
+            })
+        }
+        
+    
+
     getCombustivelItem(combustiveis){
         const items = combustiveis.map( (item) =>
             <tr>
@@ -18,9 +50,12 @@ class QtdAbastecimento extends React.Component{
             </tr>
         );
 
+    
         this.setState({
             combustiveis : items
         })
+        this.getChartData(combustiveis);
+        
     }
     getCombustiveis(){
         let requestParams = new URLSearchParams();
@@ -51,6 +86,7 @@ class QtdAbastecimento extends React.Component{
                 <div>
                     <input value="Exibir" type="submit" onClick={(e)=>{this.getCombustiveis()}}/>
                 </div>
+            
                 <div>
                     <table>
                         <thead>
@@ -64,7 +100,9 @@ class QtdAbastecimento extends React.Component{
                         </tbody>
                     </table>
                 </div>
+                <Chart  chartData={this.state.chartData} legendPosition="bottom"/>
             </div>
+            
         );
     }
 }

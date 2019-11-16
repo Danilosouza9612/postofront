@@ -10,6 +10,7 @@ import AbastecimentoDia from "./mainComponents/abastecimentosdia/abastecimentosd
 import ClienteAssiduo from "./mainComponents/clienteassiduotela/clienteassiduo";
 import NovoPosto from './mainComponents/novopostotela/novoposto';
 import AlertaPostosQtdInferior from "../appComponents/components";
+import Chart from './mainComponents/Chart';
 import './App.css';
 import './mainComponents/main.css';
 
