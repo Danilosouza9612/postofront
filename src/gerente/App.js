@@ -10,7 +10,7 @@ import AbastecimentoDia from "./mainComponents/abastecimentosdia/abastecimentosd
 import ClienteAssiduo from "./mainComponents/clienteassiduotela/clienteassiduo";
 import NovoPosto from './mainComponents/novopostotela/novoposto';
 import AlertaPostosQtdInferior from "../appComponents/components";
-import Chart from './mainComponents/Chart';
+import AbastecimentosBombaMes from "./mainComponents/abastecimentosbombames/abastecimentosbombames";
 import './App.css';
 import './mainComponents/main.css';
 
@@ -45,6 +45,7 @@ class App extends React.Component {
             <AsideBtn text="Abastecimentos do Dia" onClick={()=>this.setState({mainState : <AbastecimentoDia/>})}/>
             <AsideBtn text="Bombas de combustível" onClick={()=>this.setState({mainState : <BombasTabela/>})}/>
             <AsideBtn text="Abastecimentos" onClick={()=>this.setState({mainState: <QtdAbastecimento/>})}/>
+            <AsideBtn text="Abastecimentos de Bomba" onClick={()=>this.setState({mainState: <AbastecimentosBombaMes/>})}/>
         </div>
       );
     }else{
