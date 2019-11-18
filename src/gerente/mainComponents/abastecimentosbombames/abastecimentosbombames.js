@@ -1,5 +1,6 @@
 import React from "react";
 import { InputComponent } from "../component";
+import { Bar, Pie, Line } from "react-chartjs-2";
 
 export class AbastecimentosBombaMes extends React.Component{
 /*
@@ -13,10 +14,48 @@ export class AbastecimentosBombaMes extends React.Component{
         super(props);
         this.state = {
             abastecimentos : [],
-            mes : undefined,
-            ano : undefined
+            mes : 11,
+            ano : 2019,
+            chartData:{},
+            chartOptions : {
+                maintainAspectRatio: false ,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true,
+                            min: 0,
+                        }
+                      }]
+                   }
+            }
         }
     }
+
+    getChartData(data){
+        this.setState({
+            chartData: {    
+                labels: data.map(item=>item.nomeFornecedor),
+                datasets: [
+                    {
+                        label: 'Combustivel (Litros)',
+                        data: data.map(item=>item.qtdLitros),
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(54, 162, 235, 0.6)',
+                            'rgba(255, 206, 86, 0.6)'
+                        ]
+                    }
+                    
+                ]
+            }
+        })
+    }
+
+    componentDidMount(){
+    }
+
+
+
     setMonth(event){
         let data = event.target.value.split("-");
         this.setState({
@@ -25,6 +64,7 @@ export class AbastecimentosBombaMes extends React.Component{
         });
     }
     getAbastecimentosBombaItem(items){
+        this.getChartData(items);
         const itemsTr = items.map(item=>
             <tr>
                 <td>{item.data}</td>
@@ -77,6 +117,13 @@ export class AbastecimentosBombaMes extends React.Component{
                         </tbody>
                     </table>
                 </div>
+                <div className="chart">
+                    <Line
+                        data={this.state.chartData}
+                        height="500px"
+                        options={this.state.chartOptions}
+                    />   
+                </div>  
             </div>
         );
     }

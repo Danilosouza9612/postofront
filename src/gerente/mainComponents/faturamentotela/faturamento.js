@@ -1,15 +1,52 @@
 import React from "react";
 import {InputComponent} from "../component";
+import { Bar, Pie, Line, Doughnut } from "react-chartjs-2";
 
 class Faturamento extends React.Component{
     constructor(props){
         super(props);
         this.state = {
             faturamentos : [],
-            mes : undefined,
-            ano : undefined
+            mes : 11,
+            ano : 2019,
+            chartData: {},
+            chartOptions:{
+                maintainAspectRatio: false ,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true,
+                            min: 0,
+                        }
+                    }]
+                }
+            }
         }
     }
+
+    getChartData(data){
+        this.setState({
+            chartData: {    
+                labels: data.map(item=>item.nomeFantasia),
+                datasets: [
+                    {
+                        label: 'Faturamento (R$)',
+                        data: data.map(item=>item.faturamento),
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(54, 162, 235, 0.6)',
+                            'rgba(255, 206, 86, 0.6)'
+                        ]
+                    }
+                ]
+            }
+        })
+    }
+
+    componentDidMount(){
+
+    }
+
     setMonth(event){
         let data = event.target.value.split("-");
         this.setState({
@@ -18,6 +55,7 @@ class Faturamento extends React.Component{
         });
     }
     getFaturamentoItem(result){
+        this.getChartData(result);
         const items = result.map((item)=>(
         <tr>
             <td>{item.nomeFantasia}</td>
@@ -60,6 +98,13 @@ class Faturamento extends React.Component{
                         </tbody>
                     </table>
                 </div>
+                <div className="chart">
+                    <Doughnut 
+                        data={this.state.chartData}
+                        height="500px"
+                        options={this.state.chartOptions}
+                    />   
+                </div>    
             </div>
         );
     }

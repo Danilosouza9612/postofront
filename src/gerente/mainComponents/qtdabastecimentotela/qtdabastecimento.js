@@ -1,6 +1,6 @@
 import React from "react";
 import {InputComponent} from "../component";
-import { Bar } from "react-chartjs-2";
+import { Bar, Pie } from "react-chartjs-2";
 
 class QtdAbastecimento extends React.Component{
     constructor(props){
@@ -107,7 +107,7 @@ class QtdAbastecimento extends React.Component{
                     </table>
                 </div>
                 <div className="chart">
-                    <Bar
+                    <Pie
                         data={this.state.chartData}
                         height="500px"
                         options={this.state.chartOptions}
