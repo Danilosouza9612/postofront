@@ -1,12 +1,44 @@
 import React from "react";
 import InputComponent from "../component";
+import { Bar } from "react-chartjs-2";
 
 class AbastecimentoDia extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            abastecimentos : []
+            abastecimentos : [],
+            chartData:{},
+            chartOptions : {
+                maintainAspectRatio: false ,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true,
+                            min: 0,
+                        }
+                      }]
+                   }
+            }
         }
+    }
+    getChartData(data){
+        this.setState({
+            chartData: {    
+                labels: data.map(item=>item.nomeCliente + " " +item.data),
+                datasets: [
+                    {
+                        label: 'Combustivel (Litros)',
+                        data: data.map(item=>item.qtdLitros),
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(54, 162, 235, 0.6)',
+                            'rgba(255, 206, 86, 0.6)'
+                        ]
+                    }
+                    
+                ]
+            }
+        })
     }
     getAbastecimentoItem(data){
         const items = data.map((item)=>{
@@ -21,6 +53,8 @@ class AbastecimentoDia extends React.Component{
                 </tr>
             );
         })
+
+        this.getChartData(data.sort((a,b)=>b.qtdLitros-a.qtdLitros));
 
         this.setState({
             abastecimentos : items
@@ -70,6 +104,13 @@ class AbastecimentoDia extends React.Component{
                         </tbody>
                     </table>
                 </div>
+                <div className="chart">
+                    <Bar
+                        data={this.state.chartData}
+                        height="500px"
+                        options={this.state.chartOptions}
+                    />   
+                </div>  
             </div>
         );
     }

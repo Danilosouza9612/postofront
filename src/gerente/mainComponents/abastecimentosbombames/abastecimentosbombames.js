@@ -34,7 +34,7 @@ export class AbastecimentosBombaMes extends React.Component{
     getChartData(data){
         this.setState({
             chartData: {    
-                labels: data.map(item=>item.nomeFornecedor),
+                labels: data.map(item=>item.data),
                 datasets: [
                     {
                         label: 'Combustivel (Litros)',
@@ -64,7 +64,6 @@ export class AbastecimentosBombaMes extends React.Component{
         });
     }
     getAbastecimentosBombaItem(items){
-        this.getChartData(items);
         const itemsTr = items.map(item=>
             <tr>
                 <td>{item.data}</td>
@@ -74,6 +73,7 @@ export class AbastecimentosBombaMes extends React.Component{
                 <td>{item.preco}</td>
             </tr>    
         );
+        this.getChartData(items.sort((a,b)=>b.qtdLitros-a.qtdLitros));
 
         this.setState({abastecimentos : itemsTr})
     }
@@ -118,7 +118,7 @@ export class AbastecimentosBombaMes extends React.Component{
                     </table>
                 </div>
                 <div className="chart">
-                    <Line
+                    <Bar
                         data={this.state.chartData}
                         height="500px"
                         options={this.state.chartOptions}
