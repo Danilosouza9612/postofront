@@ -1,6 +1,7 @@
 import React from "react";
 import { InputComponent } from "../component";
-import { Bar, Pie, Line } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
+import { selectValues } from '../../../aux';
 
 export class AbastecimentosBombaMes extends React.Component{
 /*
@@ -32,13 +33,15 @@ export class AbastecimentosBombaMes extends React.Component{
     }
 
     getChartData(data){
+        const dataVal = selectValues(data, 'data', 'qtdLitros');
+        console.log(dataVal);
         this.setState({
             chartData: {    
-                labels: data.map(item=>item.data),
+                labels: dataVal.valKeys,
                 datasets: [
                     {
                         label: 'Combustivel (Litros)',
-                        data: data.map(item=>item.qtdLitros),
+                        data: dataVal.valArray,
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.6)',
                             'rgba(54, 162, 235, 0.6)',
@@ -63,6 +66,7 @@ export class AbastecimentosBombaMes extends React.Component{
             ano : data[1]
         });
     }
+    
     getAbastecimentosBombaItem(items){
         const itemsTr = items.map(item=>
             <tr>
@@ -73,7 +77,8 @@ export class AbastecimentosBombaMes extends React.Component{
                 <td>{item.preco}</td>
             </tr>    
         );
-        this.getChartData(items.sort((a,b)=>b.qtdLitros-a.qtdLitros));
+
+        this.getChartData(items);
 
         this.setState({abastecimentos : itemsTr})
     }
@@ -118,7 +123,7 @@ export class AbastecimentosBombaMes extends React.Component{
                     </table>
                 </div>
                 <div className="chart">
-                    <Bar
+                    <Line
                         data={this.state.chartData}
                         height="500px"
                         options={this.state.chartOptions}
