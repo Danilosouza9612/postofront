@@ -34,7 +34,6 @@ export class AbastecimentosBombaMes extends React.Component{
 
     getChartData(data){
         const dataVal = selectValues(data, 'data', 'qtdLitros');
-        console.log(dataVal);
         this.setState({
             chartData: {    
                 labels: dataVal.valKeys,

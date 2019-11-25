@@ -1,6 +1,6 @@
 import React from "react";
 import InputComponent from "../component";
-import { Bar } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 
 class AbastecimentoDia extends React.Component{
     constructor(props){
@@ -22,13 +22,24 @@ class AbastecimentoDia extends React.Component{
         }
     }
     getChartData(data){
+        const litrosPorDia = new Array(24);
+        let i;
+        for(i=0; i<litrosPorDia.length; i++){
+            litrosPorDia[i]={
+                hora : i+":00 - "+i+":59",
+                qtdLitros : 0
+            };
+        }
+        data.forEach((value, index)=>{
+            litrosPorDia[(value.data.split(":")[0]*1)].qtdLitros+=value.qtdLitros;
+        });
         this.setState({
             chartData: {    
-                labels: data.map(item=>item.nomeCliente + " " +item.data),
+                labels: litrosPorDia.map(value=>value.hora),
                 datasets: [
                     {
                         label: 'Combustivel (Litros)',
-                        data: data.map(item=>item.qtdLitros),
+                        data: litrosPorDia.map(value=>value.qtdLitros),
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.6)',
                             'rgba(54, 162, 235, 0.6)',
@@ -105,7 +116,7 @@ class AbastecimentoDia extends React.Component{
                     </table>
                 </div>
                 <div className="chart">
-                    <Bar
+                    <Line
                         data={this.state.chartData}
                         height="500px"
                         options={this.state.chartOptions}

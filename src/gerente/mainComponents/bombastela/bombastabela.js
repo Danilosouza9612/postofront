@@ -1,14 +1,28 @@
 import React from "react";
+import { Bar } from "react-chartjs-2";
+
 
 class BombasTabela extends React.Component{
     
     constructor(props){
         super(props);
         this.state = {
-            bombas : []
+            bombas : [],
+            chartOptions : {
+                maintainAspectRatio: false ,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true,
+                            min: 0,
+                        }
+                      }]
+                   }
+            }
         }
     }
     getBombasItem(bombas){
+        bombas.sort((a,b)=>a.qtdRestante-b.qtdRestante);
         const items = bombas.map((op)=> 
                 <tr>
                     <td>{op.id}</td>
@@ -21,6 +35,26 @@ class BombasTabela extends React.Component{
         this.setState({
             bombas : items
         });
+        this.getChartData(bombas);
+    }
+    getChartData(data){
+        this.setState({
+            chartData: {    
+                labels: data.map(item=>item.id + " " + item.nome),
+                datasets: [
+                    {
+                        label: 'Combustivel (Litros)',
+                        data: data.map(item=>item.qtdRestante),
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(54, 162, 235, 0.6)',
+                            'rgba(255, 206, 86, 0.6)'
+                        ]
+                    }
+                    
+                ]
+            }
+        })
     }
     getBombas(){
         fetch("http://localhost:8080/bomba/query08?id=1", {method : "GET"})
@@ -51,6 +85,13 @@ class BombasTabela extends React.Component{
                             {this.state.bombas}
                         </tbody>
                     </table>
+                </div>
+                <div>
+                <Bar
+                    data={this.state.chartData}
+                    height="500px"
+                    options={this.state.chartOptions}
+                />  
                 </div>
             </div>
         );
