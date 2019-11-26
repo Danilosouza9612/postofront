@@ -31,16 +31,43 @@ export class AbastecimentosBombaMes extends React.Component{
             }
         }
     }
+    getQtdDiaMes(mes, ano){
+        const diaMes = [
+            31,
+            () => (ano%2==0) ? 29 : 28,
+            31,
+            30,
+            31,
+            30,
+            31,
+            31,
+            30,
+            31,
+            30,
+            31
+        ]
 
+        return diaMes[mes-1];
+    }
     getChartData(data){
-        const dataVal = selectValues(data, 'data', 'qtdLitros');
+        const litrosPorMes = new Array(this.getQtdDiaMes(this.state.mes, this.state.ano));
+        let i;
+        for(i=0; i<litrosPorMes.length; i++){
+            litrosPorMes[i]={
+                dia : (i+1),
+                qtdLitros : 0
+            };
+        }
+        data.forEach((value, index)=>{
+            litrosPorMes[(value.data.split("/")[0]*1)-1].qtdLitros+=value.qtdLitros;
+        });
         this.setState({
             chartData: {    
-                labels: dataVal.valKeys,
+                labels: litrosPorMes.map((item)=>item.dia),
                 datasets: [
                     {
                         label: 'Combustivel (Litros)',
-                        data: dataVal.valArray,
+                        data: litrosPorMes.map((item)=>item.qtdLitros),
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.6)',
                             'rgba(54, 162, 235, 0.6)',
