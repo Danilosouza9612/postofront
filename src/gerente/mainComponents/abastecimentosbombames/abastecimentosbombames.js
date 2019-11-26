@@ -32,9 +32,11 @@ export class AbastecimentosBombaMes extends React.Component{
         }
     }
     getQtdDiaMes(mes, ano){
+        const fev = () => (ano%2==0) ? 29 : 28;
+
         const diaMes = [
             31,
-            () => (ano%2==0) ? 29 : 28,
+            fev(),
             31,
             30,
             31,
