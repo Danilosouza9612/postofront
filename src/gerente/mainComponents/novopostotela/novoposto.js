@@ -12,7 +12,6 @@ class NovoPosto extends React.Component{
                 razao_social : undefined,
                 nome_fantasia : undefined,
                 telefone : undefined,
-                GERENTE_id : undefined,
                 BANDEIRA_id : undefined,
                 cep : undefined,
                 numero : undefined,
@@ -61,7 +60,6 @@ class NovoPosto extends React.Component{
                     <InputComponent type="text" text="Razão Social" name="razao_social" onChange={(e)=>this.setFormValue("razao_social", e.target.value)}/>
                     <InputComponent type="text" text="Nome Fantasia" name="nome_fantasia" onChange={(e)=>this.setFormValue("nome_fantasia", e.target.value)}/>
                     <InputComponent type="text" text="Telefone" name="telefone" onChange={(e)=>this.setFormValue("telefone", e.target.value)}/>
-                    <InputComponent type="text" text="Informe o CPF do Gerente" name="GERENTE_id" onChange={(e)=>this.setFormValue("GERENTE_id", e.target.value)}/>
                     <FornecedorOptions type="text" text="Bandeira(Fornecedor)" name="BANDEIRA_id" onChange={(e)=>this.setFormValue("BANDEIRA_id", e.target.value)}/>
                     <InputComponent type="text" text="CEP" name="cep" onChange={(e)=>this.setFormValue("cep", e.target.value)}/>
                     <InputComponent type="text" text="Número" name="numero" onChange={(e)=>this.setFormValue("numero", e.target.value)}/>

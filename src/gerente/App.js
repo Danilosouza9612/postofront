@@ -11,17 +11,35 @@ import ClienteAssiduo from "./mainComponents/clienteassiduotela/clienteassiduo";
 import NovoPosto from './mainComponents/novopostotela/novoposto';
 import AlertaPostosQtdInferior from "../appComponents/components";
 import AbastecimentosBombaMes from "./mainComponents/abastecimentosbombames/abastecimentosbombames";
+import { Link } from 'react-router-dom'
 import './App.css';
 import './mainComponents/main.css';
+import AbastecimentoBomba from './mainComponents/abastecerbombatela/abastecimentobomba';
 
 
 class App extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      mainState : <Inicio/>,
+      mainState : undefined
     }
     this.alertBombas = React.createRef();
+  }
+  componentDidMount(){
+    this.listComponents = {
+      inicio : <Inicio/>,
+      abastecer : <NovoAbastecimento onAbastecimento={()=>{this.alertBombas.current.clearBombasInterval()}}/>,
+      abastecerBomba : <AbastecerBomba onInsertAbastecimentoBomba={()=>{this.alertBombas.current.clearBombasInterval()}}/>,
+      bombasTabela : <BombasTabela/>,
+      abastecimentoDia : <AbastecimentoDia/>,
+      qtdAbastecimento : <AbastecimentoDia/>,
+      abastecimentoBombaMes : <AbastecimentosBombaMes/>,
+      inicioDono : <Inicio/>,
+      clienteAssiduos : <ClienteAssiduo/>,
+      telaFaturamento : <FaturamentoTela/>,
+      novoPosto : <NovoPosto/>
+    }
+    this.setState({mainState : this.listComponents[this.props.component]})
   }
   renderAlertaPostosQtdInf(){
     if(!this.props.dono){
@@ -39,22 +57,44 @@ class App extends React.Component {
     if(!this.props.dono){
       return (
         <div>
-            <AsideBtn text="Início" onClick={()=>this.setState({mainState : <Inicio/>})}/>
-            <AsideBtn text="Abastecer" onClick={()=>this.setState({mainState : <NovoAbastecimento onAbastecimento={()=>{this.alertBombas.current.clearBombasInterval()}}/>})}/>
-            <AsideBtn text="Abastecer Bomba" onClick={()=>this.setState({mainState : <AbastecerBomba onInsertAbastecimentoBomba={()=>{this.alertBombas.current.clearBombasInterval()}}/>})} />
-            <AsideBtn text="Abastecimentos do Dia" onClick={()=>this.setState({mainState : <AbastecimentoDia/>})}/>
-            <AsideBtn text="Bombas de combustível" onClick={()=>this.setState({mainState : <BombasTabela/>})}/>
-            <AsideBtn text="Abastecimentos" onClick={()=>this.setState({mainState: <QtdAbastecimento/>})}/>
-            <AsideBtn text="Abastecimentos de Bomba" onClick={()=>this.setState({mainState: <AbastecimentosBombaMes/>})}/>
+            <Link className="routerLink" to="/gerente/" onClick={()=>this.setState({mainState : this.listComponents.inicio})}>
+              <AsideBtn text="Início"/>
+            </Link>
+            <Link className="routerLink" to="/gerente/abastecer" onClick={()=>this.setState({mainState : this.listComponents.abastecer})}>
+              <AsideBtn text="Abastecer"/>
+            </Link>
+            <Link className="routerLink" to="/gerente/abastecerbomba" onClick={()=>this.setState({mainState : this.listComponents.abastecerBomba})}>
+              <AsideBtn text="Abastecer Bomba"/>
+            </Link>
+            <Link className="routerLink" to="/gerente/abastecimentosdia" onClick={()=>this.setState({mainState : this.listComponents.abastecimentoDia})}>
+              <AsideBtn text="Abastecimentos do Dia"/>
+            </Link>
+            <Link className="routerLink" to="/gerente/bombascombustivel" onClick={()=>this.setState({mainState : this.listComponents.bombasTabela})}>
+              <AsideBtn text="Bombas de combustível"/>
+            </Link>
+            <Link className="routerLink" to="/gerente/abastecimentos" onClick={()=>this.setState({mainState : this.listComponents.qtdAbastecimento})}>
+              <AsideBtn text="Abastecimentos"/>
+            </Link>
+            <Link className="routerLink" to="/gerente/abastecimentosbomba" onClick={()=>this.setState({mainState : this.listComponents.abastecimentoBombaMes})} >
+              <AsideBtn text="Abastecimentos de Bomba"/>
+            </Link>
         </div>
       );
     }else{
       return(
         <div>
-            <AsideBtn text="Início" onClick={()=>this.setState({mainState : <Inicio/>})}/>
-            <AsideBtn text="Clientes mais assíduos" onClick={()=>this.setState({mainState : <ClienteAssiduo/>})}/>
-            <AsideBtn text="Faturamento" onClick={()=>this.setState({mainState : <FaturamentoTela/>})}/>
-            <AsideBtn text="Cadastrar Posto" onClick={()=>this.setState({mainState : <NovoPosto/>})}/>
+            <Link className="routerLink" to="/dono/" onClick={()=>this.setState({mainState : this.listComponents.inicioDono})}>
+              <AsideBtn text="Início"/>
+            </Link>
+            <Link className="routerLink" to="/dono/clientesassiduos" onClick={()=>this.setState({mainState : this.listComponents.clienteAssiduos})}>
+              <AsideBtn text="Clientes mais assíduos"/>
+            </Link>
+            <Link className="routerLink" to="/dono/faturamento" onClick={()=>this.setState({mainState : this.listComponents.telaFaturamento})}>
+              <AsideBtn text="Faturamento"/>
+            </Link>
+            <Link className="routerLink" to="/dono/novoposto" onClick={()=>this.setState({mainState : this.listComponents.novoPosto})}>
+              <AsideBtn text="Cadastrar Posto"/>
+            </Link>
         </div>
       );
     }

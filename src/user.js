@@ -1,6 +1,7 @@
 import React from "react";
 import App from "./gerente/App";
 import "./user.css";
+import { Link } from 'react-router-dom'
 
 class User extends React.Component{
     constructor(props){
@@ -17,8 +18,8 @@ class User extends React.Component{
                         <h1>Meu Posto</h1>
                     </div>
                     <div>
-                        <div className="btn" onClick={()=>{this.setState({main : <App dono={true}/>})}}>Sou Dono</div>
-                        <div className="btn" onClick={()=>{this.setState({main : <App dono={false}/>})}}>Sou Gerente</div>
+                        <Link className="btn" to="/dono">Sou Dono</Link>
+                        <Link className="btn" to="/gerente">Sou Gerente</Link>
                     </div>
                 </div>
             </div>

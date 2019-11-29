@@ -37,7 +37,7 @@ class NovoAbastecimento extends React.Component{
                 }else{
                     window.alert("Erro " + response.status);
                 }
-            }).catch(()=>{window.alert("Fetch Error")});
+            }).catch((e)=>{window.alert("Fetch Error:"+e)});
         }catch(e){
             window.alert(e);
         }

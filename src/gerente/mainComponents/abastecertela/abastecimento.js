@@ -25,10 +25,10 @@ class Abastecimento{
         return this.nome;
     }
     set Cpf(cpf){
-        if(cpf!==undefined){
-            this.cpf = cpf;
+        if(cpf===undefined){
+            this.cpf=null;
         }else{
-            throw new Error("Informe o cpf do cliente");
+            this.cpf=cpf;
         }
     }
     set BombaId(bombaId){
@@ -63,10 +63,10 @@ class Abastecimento{
         }
     }
     set Nome(nome){
-        if(nome!==undefined && nome!==""){
-            this.nome = nome;
+        if(nome===undefined){
+            this.nome=null;
         }else{
-            throw new Error("Informe o nome do cliente");
+            this.nome=nome;
         }
     }
 }

@@ -5,7 +5,6 @@ class Posto{
         this.RazaoSocial = form.razao_social;
         this.NomeFantasia = form.nome_fantasia;
         this.Telefone = form.telefone;
-        this.GerenteCpf = form.GERENTE_id;
         this.BandeiraId = form.BANDEIRA_id;
         this.Cep = form.cep;
         this.Numero = form.numero;
@@ -23,9 +22,6 @@ class Posto{
     }
     get Telefone(){
         return this.telefone;
-    }
-    get GerenteCpf(){
-        return this.gerenteCpf;
     }
     get BandeiraId(){
         return this.bandeiraId;
@@ -66,13 +62,6 @@ class Posto{
             this.telefone = telefone;
         }else{
             throw new Error("Informe o telefone do posto");
-        }
-    }
-    set GerenteCpf(gerenteCpf){
-        if(gerenteCpf!==undefined){
-            this.gerenteCpf = gerenteCpf;
-        }else{
-            throw new Error("Informe o código do gerente do posto");
         }
     }
     set BandeiraId(bandeiraId){
