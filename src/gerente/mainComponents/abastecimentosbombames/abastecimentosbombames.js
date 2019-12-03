@@ -1,7 +1,8 @@
 import React from "react";
 import { InputComponent } from "../component";
 import { Line } from "react-chartjs-2";
-import { selectValues } from '../../../aux';
+import { readToken } from '../login/loginVerify';
+
 
 export class AbastecimentosBombaMes extends React.Component{
 /*
@@ -112,7 +113,7 @@ export class AbastecimentosBombaMes extends React.Component{
     }
     getAbastecimentosBomba(dataSelec){
         let requestParams = new URLSearchParams();
-        requestParams.append("id", 1);
+        requestParams.append("id", readToken());
         requestParams.append("mes", this.state.mes);
         requestParams.append("ano", this.state.ano);
         fetch("http://localhost:8080/abastecimento_bomba/query13?"+requestParams.toString(), { method : "GET"})

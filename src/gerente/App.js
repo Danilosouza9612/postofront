@@ -12,6 +12,7 @@ import NovoPosto from './mainComponents/novopostotela/novoposto';
 import AlertaPostosQtdInferior from "../appComponents/components";
 import AbastecimentosBombaMes from "./mainComponents/abastecimentosbombames/abastecimentosbombames";
 import { Link } from 'react-router-dom'
+import { IsItNoLogged, deleteToken } from './mainComponents/login/loginVerify'
 import './App.css';
 import './mainComponents/main.css';
 import AbastecimentoBomba from './mainComponents/abastecerbombatela/abastecimentobomba';
@@ -24,6 +25,14 @@ class App extends React.Component {
       mainState : undefined
     }
     this.alertBombas = React.createRef();
+  }  
+  componentWillMount(){
+    if(this.props.dono==false){
+      this.setState({mainState : IsItNoLogged()}) 
+     }
+  }
+  shutDownSession(){
+    this.setState({mainState : deleteToken()})
   }
   componentDidMount(){
     this.listComponents = {
@@ -78,6 +87,7 @@ class App extends React.Component {
             <Link className="routerLink" to="/gerente/abastecimentosbomba" onClick={()=>this.setState({mainState : this.listComponents.abastecimentoBombaMes})} >
               <AsideBtn text="Abastecimentos de Bomba"/>
             </Link>
+            <AsideBtn text="Sair" onClick={()=>{this.shutDownSession()}}/>
         </div>
       );
     }else{

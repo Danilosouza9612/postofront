@@ -1,5 +1,7 @@
 import React from "react";
 import "./components.css";
+import { readToken } from '../gerente/mainComponents/login/loginVerify';
+
 
 export class AlertaPostosQtdInferior extends React.Component{
     constructor(props){
@@ -24,7 +26,7 @@ export class AlertaPostosQtdInferior extends React.Component{
         this.setState(st);
     }
     verificarBombas = function(){
-        fetch("http://localhost:8080/bomba/query06?id=1", {method : "GET"})
+        fetch("http://localhost:8080/bomba/query06?token="+readToken(), {method : "GET"})
         .then((response)=>response.text())
         .then((num)=>{this.bombaQtdInferiorContainer(num)})
         .catch((e)=>{window.alert(e)});

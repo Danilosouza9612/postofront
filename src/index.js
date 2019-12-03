@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import User from './user';
+import Login from './gerente/mainComponents/login/login'
 import App from './gerente/App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
@@ -10,6 +11,7 @@ ReactDOM.render(
     <Switch>
         <Route path="/" exact={true} component={User} />
         <Route path="/gerente" exact={true} component={()=><App dono={false} component="inicio"/>} />
+        <Route path="/gerente/login" component={Login} />
         <Route path="/gerente/abastecer" component={()=><App dono={false} component="abastecer" />} />
         <Route path="/gerente/abastecerbomba" component={()=><App dono={false} component="abastecerBomba" />} />
         <Route path="/gerente/abastecimentosdia" component={()=><App dono={false} component="abastecimentoDia"/>} />

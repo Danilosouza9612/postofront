@@ -1,6 +1,6 @@
 import React from "react";
 import {InputComponent} from "../component";
-import { Bar, Pie, Line, Doughnut } from "react-chartjs-2";
+import { Bar, Pie, Line } from "react-chartjs-2";
 
 class Faturamento extends React.Component{
     constructor(props){
@@ -25,6 +25,7 @@ class Faturamento extends React.Component{
     }
 
     getChartData(data){
+        console.log(data);
         this.setState({
             chartData: {    
                 labels: data.map(item=>item.nomeFantasia),
@@ -99,7 +100,7 @@ class Faturamento extends React.Component{
                     </table>
                 </div>
                 <div className="chart">
-                    <Doughnut 
+                    <Pie 
                         data={this.state.chartData}
                         height="500px"
                         options={this.state.chartOptions}

@@ -7,6 +7,7 @@ class Abastecimento{
         this.QtdLitros = form.qtdLitros;
         this.Nome = form.nome;
         this.Hora = form.hora;
+        this.FrentistaId = form.frentistaId;
     }
 
     get Cpf(){
@@ -67,6 +68,16 @@ class Abastecimento{
             this.nome=null;
         }else{
             this.nome=nome;
+        }
+    }
+    get FrentistaId(){
+        return this.frentistaId;
+    }
+    set FrentistaId(frentistaId){
+        if(frentistaId!==undefined){
+            this.frentistaId = frentistaId;
+        }else{
+            throw new Error("Informe o Frentista");
         }
     }
 }

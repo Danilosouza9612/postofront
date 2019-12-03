@@ -1,5 +1,7 @@
 import React from "react";
 import {OptionComponent} from "./component";
+import { readToken } from './login/loginVerify';
+
 
 export class BombaOptions extends React.Component{
     constructor(props){
@@ -21,7 +23,7 @@ export class BombaOptions extends React.Component{
         this.setState({options : items});
     }
     getBombas(){
-        fetch("http://localhost:8080/bomba/bombas?id=1", {method : "GET"})
+        fetch("http://localhost:8080/bomba/bombas?token="+readToken(), {method : "GET"})
         .then((response)=>response.json())
         .then((data)=>{this.getBombaItem(data)})
         .catch(()=>{window.alert("Fetch Error")})
@@ -56,5 +58,28 @@ export class FornecedorOptions extends React.Component{
             <OptionComponent name="bandeiraId" text="Fornecedor" onChange={this.props.onChange} options={this.state.options}/>
         );
     }
+}
+export class FrentistaOptions extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            options : []
+        }
+    }
+    getFrentistas(){
+        fetch("http://localhost:8080/frentista/frentistas?token="+readToken(), {method : "GET"})
+        .then((response)=>response.json())
+        .then((data)=>{this.setState({options : data})})
+        .catch(()=>{window.alert("Fetch Error")});
+    }
+    componentDidMount(){
+        this.getFrentistas();
+    }
+    render(){
+        return(
+            <OptionComponent name="bandeiraId" text="Frentista" onChange={this.props.onChange} options={this.state.options}/>
+        );
+    }
+
 }
 export default BombaOptions;

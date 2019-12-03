@@ -1,5 +1,7 @@
 import React from "react";
 import { Bar } from "react-chartjs-2";
+import { readToken } from '../login/loginVerify';
+
 
 
 class BombasTabela extends React.Component{
@@ -57,7 +59,7 @@ class BombasTabela extends React.Component{
         })
     }
     getBombas(){
-        fetch("http://localhost:8080/bomba/query08?id=1", {method : "GET"})
+        fetch("http://localhost:8080/bomba/query08?token="+readToken(), {method : "GET"})
         .then((response)=>response.json())
         .then((data)=>{this.getBombasItem(data)})
         .catch(()=>{window.alert("Fetch Error")});  

@@ -1,6 +1,6 @@
 import React from 'react';
 import InputComponent from '../component.js';
-import BombaOptions from '../misc';
+import { BombaOptions, FrentistaOptions } from '../misc';
 import Abastecimento from './abastecimento';
 
 class NovoAbastecimento extends React.Component{
@@ -10,6 +10,7 @@ class NovoAbastecimento extends React.Component{
         this.state = {
             formData : {
                 bombaId: undefined,
+                frentistaId : undefined, 
                 nome: undefined,
                 qtdLitros: undefined,
                 cpf: undefined,
@@ -61,6 +62,7 @@ class NovoAbastecimento extends React.Component{
                 <InputComponent type="text" text="CPF do Cliente" name="cpf" onChange={(e)=>this.setFormValue("cpf", e.target.value)}/>
                 <InputComponent type="text" text="Nome do Cliente" name="nome" onChange={(e)=>this.setFormValue("nome", e.target.value)}/>
                 <BombaOptions onChange={(e)=>(this.setFormValue("bombaId", e.target.value))}/>
+                <FrentistaOptions onChange={(e)=>(this.setFormValue("frentistaId", e.target.value))}/>
                 <div>
                     <input type="submit" value="Inserir" onClick={(e)=> this.enviarDados()}></input>
                 </div>

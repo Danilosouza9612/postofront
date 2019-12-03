@@ -1,6 +1,8 @@
 import React from "react";
 import InputComponent from "../component";
 import { Line } from "react-chartjs-2";
+import { readToken } from '../login/loginVerify';
+
 
 class AbastecimentoDia extends React.Component{
     constructor(props){
@@ -61,6 +63,7 @@ class AbastecimentoDia extends React.Component{
                     <td>{item.preco}</td>
                     <td>{item.qtdLitros}</td>
                     <td>{item.nome}</td>
+                    <td>{item.frentista}</td>
                 </tr>
             );
         })
@@ -77,7 +80,7 @@ class AbastecimentoDia extends React.Component{
     dateRequest(dataSelec){
         let params = {
             data : dataSelec,   
-            id : 1
+            token : readToken()
         };
         let queryString = new URLSearchParams();
         for(let key in params){
@@ -108,6 +111,7 @@ class AbastecimentoDia extends React.Component{
                                 <td>Preço</td>
                                 <td>Litros</td>
                                 <td>Combustível</td>
+                                <td>Frentista</td>
                             </tr>
                         </thead>
                         <tbody>
